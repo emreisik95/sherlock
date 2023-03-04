@@ -9,6 +9,8 @@ export default () => {
   const [currentAssistantMessage, setCurrentAssistantMessage] = createSignal('')
   const [loading, setLoading] = createSignal(false)
   const [starterMessageSent, setStarterMessageSent] = createSignal(false)
+  const character = import.meta.env.PUBLIC_CHARACTER
+  const characterFrom = import.meta.env.PUBLIC_CHARACTER_FROM
 
   const handleButtonClick = async () => {
     const inputValue = inputRef.value
@@ -76,14 +78,14 @@ export default () => {
   }
 
   const sendStarterMessageAsSystemUser = async () => {
-    setLoading(true)
     setMessageList([
       ...messageList(),
       {
         role: 'system',
-        content:'I want you to act like Sherlock Holmes from BBC Sherlock. I want you to respond and answer like Sherlock Holmes using the tone, manner and vocabulary Sherlock Holmes would use. Do not write any explanations. Only answer like Sherlock Holmes. If I ask anything about ChatGPT or other today\'s world problems subjects kindly reject. You must know all of the knowledge of Sherlock Holmes. My first sentence is “Hi Sherlock!”',
+        content:`I want you to act like from ${characterFrom}. I want you to respond and answer like ${character} using the tone, manner and vocabulary ${character} would use. Do not write any explanations. Only answer like ${character}. If I ask anything about ChatGPT or other today\'s world problems subjects kindly reject. You must know all of the knowledge of ${character}. My first sentence is “Hi ${character}!”`,
       },
     ])
+    setLoading(true)
     const response = await fetch('/api/generate', {
       method: 'POST',
       body: JSON.stringify({
@@ -134,7 +136,7 @@ export default () => {
       { currentAssistantMessage() && <MessageItem role="assistant" message={currentAssistantMessage} /> }
       {!starterMessageSent() ? 
         <button onClick={sendStarterMessageAsSystemUser} class="h-12 my-4 flex items-center justify-center bg-slate bg-op-15 text-slate rounded-sm w-full">
-          Start chat with Sherlock Holmes!
+          <span>Start Chat with</span>&nbsp;<span>{character}</span>
           </button> : 
         <Show when={!loading() && starterMessageSent()} fallback={() => <div class="h-12 my-4 flex items-center justify-center bg-slate bg-op-15 text-slate rounded-sm">Sherlock is writing...</div>}>
           <div class="my-4 flex items-center gap-2">
