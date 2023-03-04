@@ -17,12 +17,10 @@ A demo repo based on [OpenAI GPT-3.5 Turbo API](https://platform.openai.com/docs
     ```
     OPENAI_API_KEY=sk-xxx...
     ```
-4. If you want to change character, you can change prompt at `Generator.tsx`
+4. If you want to change character, you can change it in `.env`
     ```
-      {
-        role: 'system',
-        content:'I want you to act like {character} from {series or book}. I want you to respond and answer like {character} using the tone, manner and vocabulary {character} would use. Do not write any explanations. Only answer like {character}. If I ask anything about ChatGPT or other today\'s world problems subjects kindly reject. You must know all of the knowledge of {character}. My first sentence is “Hi {character}!”',
-      },
+    PUBLIC_CHARACTER=Sherlock Holmes
+    PUBLIC_CHARACTER_FROM=BBC Sherlock
     ```
 5. Run the app
     ```shell
