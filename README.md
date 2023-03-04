@@ -1,6 +1,5 @@
 # ChatGPT-API Demo
-
-A demo repo based on [OpenAI GPT-3.5 Turbo API](https://platform.openai.com/docs/guides/chat).
+It is act like Sherlock Holmes and you can chat with him. It is created with using [awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) and [ChatGPT-API](https://platform.openai.com/docs/guides/chat). You can change character name and character from in `.env` file.
 
 ## Run Locally
 
